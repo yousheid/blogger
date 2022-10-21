@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Generator L2TP</title>
+  <meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'><link rel="stylesheet" href="./style.css">
+  <script>function includeHTML(){for(var t,e,n,i=document.getElementsByTagName("*"),s=0;s<i.length;s++)if(e=(t=i[s]).getAttribute("w3-include-html"))return(n=new XMLHttpRequest).onreadystatechange=function(){4==this.readyState&&(200==this.status&&(t.innerHTML=this.responseText),404==this.status&&(t.innerHTML="Page not found."),t.removeAttribute("w3-include-html"),includeHTML())},n.open("GET",e,!0),void n.send()}</script>
+</head>
+<body>
+<div class="main-div">
+	<a id="logos" href="#">
+	<span class="logo">YOUSHE</span>
+	<span class="domain">.ID</span>
+	</a>
+
+<ul class="main-menu">
+     <li><a href="#">Office</a></li>
+</ul>
+
+<ul class="right-menu">
+     <li><a href="./"><span>Home</span> <i class="fas fa-home fa-2x"></i></a></li>
+     <li><a href="#"><span>Wifi</span> <i class="fas fa-wifi fa-2x"></i></a></li>
+     <li><a href="#"><span>Tools</span> <i class="fas fa-tools fa-2x"></i></a></li>
+</ul>
+<div class="menu-btn">
+    <i style="color:#fff;" class="fas fa-list fa-2x"></i>
+</div>
+</div>
+<div class="container">
+<div class="wrapper">
+<header style="border-radius: 0;">
+	<h1><b>Header</b> Judul Ada Disini Nanti Ya kak</h1>
+	<p>ini nanti jadi keterangan</p>
+</header>
+
+<nav>
+	<label>First Name:<span>Disini nanti keterangan</span></label> <input type="text" id="input1" placeholder="Please enter your firstName" value="">
+	<label>Last Name:<span>Disini nanti keterangan</span></label> <input type="text" id="input2" placeholder="Please enterlastName" value="">
+	<label>Last Name:<span>Disini nanti keterangan</span></label> <input type="text" id="input3" placeholder="Please enterlastName" value="">
+</nav>
+
+<main>
+	<h3>Copy-Paste the Script to your Terminal!</h3>
+	<div id="content" onclick="CopyToClipboard('content');return false;">
+		<strong>/interface l2tp-client</strong> add connect-to=<b id="data1"></b> name=VPN-REMOTE-L2TP comment="VPN-REMOTE-L2TP" user=<b id="data2"></b> pass=<b id="data3"></b> disable=no;
+   </div>  
+	<div class="subscribe">
+		<button type="submit" class="genhid" id="fetchDetails"><i class="fas fa-plus" aria-hidden="true"></i> Generate</button>	
+        <button href="#" onclick="CopyToClipboard('content');return false;"><i class="fas fa-clipboard"></i> Copy</button>      
+		<button onclick="download()" style="background: #ffc107;"><i class="fas fa-download"></i>  Download</button>
+
+	</div>     
+</main>
+</div>
+</div>
+<!--div w3-include-html="link.html"/--> 
+<div w3-include-html="footer.html"/> 
+<script  src="./script.js"></script><script>includeHTML();</script>
+</body>
+</html>
