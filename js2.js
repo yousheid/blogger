@@ -1,0 +1,1 @@
+var player = new Playerjs({id:&quot;player&quot;, file:&quot;https://biblescreen.faithlifecdn.com/biblescreen/bibleScreen/playlist.m3u8&quot;, poster:&quot;https://imgur.com/zydwEnM.jpg&quot;});
