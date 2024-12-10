@@ -1,0 +1,159 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Pemilihan Ketua RW
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js">
+  </script>
+  <style>
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      z-index: -1;
+    }
+.number-badge {
+            margin-bottom: -45px;
+margin-left:-110px;
+            color: white;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-weight: bold;
+z-index: -999;
+        }
+#border {border:3px solid red;
+background-color: white;
+}
+.sub{font-size:small; background:red;color:white;padding:5px 10px;border-radius:5px}
+  </style>
+ </head>
+ <body class="bg-gray-100 relative">
+  <img src="https://i.pinimg.com/736x/67/17/61/671761df238709a42f6f1aeba01fb0cb.jpg" alt="Background image of a scenic landscape with mountains and a lake" class="background-image">
+  <div class="container mx-auto p-1 relative z-10">
+   <h1 class="text-3xl font-bold text-center mb-4">
+    PEMILIHAN KETUA RW 23
+<center><span class="sub">RW 23 Jaten Karanganyar</span></center>
+   </h1>
+   <div class="flex flex-wrap justify-center space-x-4">
+    <div class="text-center mb-4"><p class="number-badge text-xl font-bold">1</p>
+     <img id="border" alt="Foto peserta 1, seorang pria dengan jas dan dasi" class="cursor-pointer rounded-full  w-36 h-36 md:w-36 md:h-36 p-1 border" height="80" onclick="vote(0)" src="https://raw.githubusercontent.com/yousheid/app/refs/heads/main/_20241210_115619.JPG" width="80"/>
+     <p class="mt-2 font-semibold">
+      TRI JAROT RUSWAJI
+     </p>
+     <p class="text-lg" id="voteCount0">
+      0 suara
+     </p>
+    </div>
+    <div class="text-center mb-4"><p class="number-badge text-xl font-bold">2</p>
+     <img id="border" alt="Foto peserta 2, seorang wanita denga blazer" class="cursor-pointer rounded-full w-36 h-36 md:w-36 md:h-36 p-1 border" height="80" onclick="vote(1)" src="https://raw.githubusercontent.com/yousheid/app/refs/heads/main/_20241210_115640.JPG" width="80"/>
+     <p class="mt-2 font-semibold">
+      ARIYANTO
+     </p>
+     <p class="text-lg" id="voteCount1">
+      0 suara
+     </p>
+    </div>
+    <div class="text-center mb-4"><p class="number-badge text-xl font-bold">3</p>
+     <img id="border" alt="Foto peserta 3, seorang pria dengan kemeja batik" class="cursor-pointer rounded-full w-36 h-36 md:w-36 md:h-36 p-1 border" height="80" onclick="vote(2)" src="https://raw.githubusercontent.com/yousheid/app/refs/heads/main/_20241210_115555.JPG" width="80"/>
+     <p class="mt-2 font-semibold">
+      DODIK MAYANTORO
+     </p>
+     <p class="text-lg" id="voteCount2">
+      0 suara
+     </p>
+    </div>
+   </div></br>
+<center><b>Tekan foto untuk memilih calon ketua RW</b></center>
+   <div class="mt-8 relative">
+    <canvas id="voteChart">
+    </canvas>
+   </div>
+   <div class="mt-8 bg-white p-4 rounded shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Hasil Pilihan RW</h2>
+    <p id="totalVotes" class="mb-2">Total suara: 0</p>
+    <p id="result0" class="mb-2">TRI JAROT RUSWAJI: 0 suara</p>
+    <p id="result1" class="mb-2">ARIYANTO: 0 suara</p>
+    <p id="result2" class="mb-2">DODIK MAYANTORO: 0 suara</p>
+    <p id="winner" class="font-bold">Pemenang: -</p>
+   </div>
+<center class="sub">By YOUSHE</center>
+  </div>
+   <script>
+   let votes = JSON.parse(localStorage.getItem('votes')) || [0, 0, 0];
+
+        function vote(candidate) {
+            votes[candidate]++;
+            localStorage.setItem('votes', JSON.stringify(votes));
+            updateChart();
+            updateVoteCounts();
+            updateResults();
+        }
+
+        function updateChart() {
+            const totalVotes = votes.reduce((a, b) => a + b, 0);
+            const percentages = votes.map(vote => (totalVotes === 0 ? 0 : (vote / totalVotes) * 100));
+
+            voteChart.data.datasets[0].data = percentages;
+            voteChart.update();
+        }
+
+        function updateVoteCounts() {
+            document.getElementById('voteCount0').innerText = `${votes[0]} suara`;
+            document.getElementById('voteCount1').innerText = `${votes[1]} suara`;
+            document.getElementById('voteCount2').innerText = `${votes[2]} suara`;
+        }
+
+        function updateResults() {
+            const totalVotes = votes.reduce((a, b) => a + b, 0);
+            document.getElementById('totalVotes').innerText = `Total suara: ${totalVotes}`;
+            document.getElementById('result0').innerText = `TRI JAROT RUSWAJI: ${votes[0]} suara`;
+            document.getElementById('result1').innerText = `ARIYANTO: ${votes[1]} suara`;
+            document.getElementById('result2').innerText = `DODIK MAYANTORO: ${votes[2]} suara`;
+
+            const maxVotes = Math.max(...votes);
+            const winnerIndex = votes.indexOf(maxVotes);
+            const winnerName = ['TRI JAROT RUSWAJI', 'ARIYANTO', 'DODIK MAYANTORO'][winnerIndex];
+            document.getElementById('winner').innerText = `Pemenang: ${winnerName}`;
+        }
+
+        const ctx = document.getElementById('voteChart').getContext('2d');
+        const voteChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['TRI JAROT RUSWAJI', 'ARIYANTO', 'DODIK MAYANTORO'],
+                datasets: [{
+                    data: votes.map(vote => (votes.reduce((a, b) => a + b, 0) === 0 ? 0 : (vote / votes.reduce((a, b) => a + b, 0)) * 100)),
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                }
+            }
+        });
+
+        // Initial update
+        updateVoteCounts();
+        updateResults();
+  </script>
+ </body>
+</html>
